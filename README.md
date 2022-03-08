@@ -38,3 +38,4 @@ Currently in active development...
 2022-03-07 22:00:02.138  INFO 1 --- [trics-datadog-0] o.s.m.export.datadog.DatadogRegistry     : successfully sent 46 metrics to datadog                                                     
 2022-03-07 22:01:03.064  INFO 1 --- [trics-datadog-1] o.s.m.export.datadog.DatadogRegistry     : successfully sent 46 metrics to datadog
 ```
+![alt text](https://github.com/xba1k/CANDog/blob/main/datadog.png?raw=true)
