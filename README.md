@@ -1,6 +1,6 @@
 ## CANDog
 
-SpringBoot service to pick up CAN messages retransmitted by CANBridge and extract certain values for reporting/monitoring/alerting via DataDog.
+SpringBoot service to pick up CAN messages retransmitted by [CANBridge](https://github.com/xba1k/CANBridge) and extract certain values for reporting/monitoring/alerting via DataDog.
 
 ## Status
 
