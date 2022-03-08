@@ -9,7 +9,7 @@ Currently in active development...
 ## Demo
 
 ```
-user@user-pc:~/NetBeansProjects/CANDog$ ./run_dockerized.sh
+~/CANDog$ ./run_dockerized.sh
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
