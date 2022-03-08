@@ -2,6 +2,9 @@ package com.github.xba1k.CANDog.configuration;
 
 import com.github.xba1k.CANDog.frame.FrameDecodingFactory;
 import com.github.xba1k.CANDog.frame.SIFrameDecodingFactoryImpl;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.datadog.DatadogConfig;
+import io.micrometer.datadog.DatadogMeterRegistry;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +28,7 @@ public class Beans {
     
     @Bean
     @Scope("singleton")
-    public FrameDecodingFactory frameDecodingFactory() {
+    public FrameDecodingFactory provideFrameDecodingFactory() {
         return new SIFrameDecodingFactoryImpl();
     }
     

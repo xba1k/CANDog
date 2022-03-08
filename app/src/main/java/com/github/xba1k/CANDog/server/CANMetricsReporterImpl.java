@@ -4,12 +4,12 @@ import com.github.xba1k.CANDog.frame.CANFrame;
 import com.github.xba1k.CANDog.frame.SIIdFrame;
 import com.github.xba1k.CANDog.frame.SISocFrame;
 import com.github.xba1k.CANDog.frame.SIVoltageFrame;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Tag;
 import java.util.Arrays;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.metrics.instrument.MeterRegistry;
-import org.springframework.metrics.instrument.Tag;
 import org.springframework.stereotype.Component;
 
 @Component

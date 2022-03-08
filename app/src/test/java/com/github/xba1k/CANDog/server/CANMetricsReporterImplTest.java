@@ -7,6 +7,9 @@ import com.github.xba1k.CANDog.frame.SIFaultFrame;
 import com.github.xba1k.CANDog.frame.SIIdFrame;
 import com.github.xba1k.CANDog.frame.SISocFrame;
 import com.github.xba1k.CANDog.frame.SIVoltageFrame;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Tag;
 import java.util.Arrays;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,9 +23,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import org.springframework.metrics.instrument.Counter;
-import org.springframework.metrics.instrument.MeterRegistry;
-import org.springframework.metrics.instrument.Tag;
 
 public class CANMetricsReporterImplTest {
 

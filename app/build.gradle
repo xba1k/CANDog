@@ -33,9 +33,8 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-logging:${springBootVersion}"
 
     // Metrics
-    implementation "org.springframework.metrics:spring-metrics:0.5.1.RELEASE"
-    // 65 seems to be the latest version compatible with spring-metrics
-    implementation "com.netflix.spectator:spectator-api:0.65.0"
+    implementation "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}"
+    implementation "io.micrometer:micrometer-registry-datadog:1.8.3"
     
 }
 
