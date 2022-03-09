@@ -1,4 +1,4 @@
-package com.github.xba1k.CANDOG.util;
+package com.github.xba1k.CANDog.util;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;

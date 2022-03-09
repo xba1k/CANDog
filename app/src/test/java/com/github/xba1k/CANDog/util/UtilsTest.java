@@ -1,6 +1,5 @@
 package com.github.xba1k.CANDog.util;
 
-import com.github.xba1k.CANDOG.util.Utils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,6 @@
 package com.github.xba1k.CANDog.frame;
 
-import com.github.xba1k.CANDOG.util.Utils;
+import com.github.xba1k.CANDog.util.Utils;
 
 public class GenericFrame implements CANFrame {
     
