@@ -4,9 +4,11 @@ SpringBoot service to pick up CAN messages retransmitted by [CANBridge](https://
 
 ## Setup
 
-DataDog API/Application keys must be specified in the application.properties, then the jar file can be built by running build.sh or dockerize.sh for the Docker image build.
+DataDog API/Application keys must be specified via command line parameters, see run.sh and run_dockerized.sh for examples. Service defaults to port 1080, but can be overriden with --listen_port parameter, i.e. 
 
-TODO: externalize the Application/API keys
+```
+java -jar app.jar --datadog-api-key=${DATADOG_API_KEY} --datadog-app-key=${DATADOG_APP_KEY} --listen_port=8123
+```
 
 ## Demo
 
