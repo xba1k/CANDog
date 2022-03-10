@@ -28,7 +28,7 @@ dependencies {
     // SpringBoot dependencies
     implementation "org.springframework.boot:spring-boot-starter-parent:${springBootVersion}"
     implementation "org.springframework.boot:spring-boot-starter:${springBootVersion}"
-    //implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
     implementation "org.springframework.boot:spring-boot-starter-integration:2.6.3"
     implementation "org.springframework.integration:spring-integration-ip:5.5.9"
     implementation "org.springframework.boot:spring-boot-starter-logging:${springBootVersion}"

@@ -90,17 +90,17 @@ public class CANMetricsReporterImplTest {
 
         final ArgumentCaptor<List<Tag>> tagCaptor = ArgumentCaptor.forClass(expectedTags.getClass());
         final ArgumentCaptor<String> nameCaptor = ArgumentCaptor.forClass(String.class);
-        final ArgumentCaptor intValCaptor = ArgumentCaptor.forClass(int.class);
+        final ArgumentCaptor<Number> valCaptor = ArgumentCaptor.forClass(int.class);
 
         metricsReporter.processFrame("127.0.0.1", sampleSocFrame);
         verify(frameCounter, times(1)).increment();
         verify(meterRegistry, times(0)).gauge(anyString(), anyList(), anyDouble());
-        verify(meterRegistry, times(2)).gauge(nameCaptor.capture(), tagCaptor.capture(), (int) intValCaptor.capture());
+        verify(meterRegistry, times(2)).gauge(nameCaptor.capture(), tagCaptor.capture(), valCaptor.capture());
 
         assertEquals("SIStateOfCharge", nameCaptor.getAllValues().get(0));
         assertEquals("SIStateOfHealth", nameCaptor.getAllValues().get(1));
-        assertEquals(2, intValCaptor.getAllValues().get(0));
-        assertEquals(3, intValCaptor.getAllValues().get(1));
+        assertEquals(2, valCaptor.getAllValues().get(0).doubleValue());
+        assertEquals(3, valCaptor.getAllValues().get(1).doubleValue());
         assertEquals(expectedTags, tagCaptor.getValue());
 
     }
@@ -114,19 +114,19 @@ public class CANMetricsReporterImplTest {
 
         final ArgumentCaptor<List<Tag>> tagCaptor = ArgumentCaptor.forClass(expectedTags.getClass());
         final ArgumentCaptor<String> nameCaptor = ArgumentCaptor.forClass(String.class);
-        final ArgumentCaptor doubleValCaptor = ArgumentCaptor.forClass(double.class);
+        final ArgumentCaptor <Number> valCaptor = ArgumentCaptor.forClass(double.class);
 
         metricsReporter.processFrame("127.0.0.1", sampleIdFrame);
         verify(frameCounter, times(1)).increment();
-        verify(meterRegistry, times(3)).gauge(nameCaptor.capture(), tagCaptor.capture(), (double) doubleValCaptor.capture());
+        verify(meterRegistry, times(3)).gauge(nameCaptor.capture(), tagCaptor.capture(), valCaptor.capture());
 
         assertEquals("SISwVer", nameCaptor.getAllValues().get(0));
         assertEquals("SIHwVer", nameCaptor.getAllValues().get(1));
         assertEquals("SICapacity", nameCaptor.getAllValues().get(2));
 
-        assertEquals(8, doubleValCaptor.getAllValues().get(0));
-        assertEquals(6, doubleValCaptor.getAllValues().get(1));
-        assertEquals(7.0, doubleValCaptor.getAllValues().get(2));
+        assertEquals(8, valCaptor.getAllValues().get(0).doubleValue());
+        assertEquals(6, valCaptor.getAllValues().get(1).doubleValue());
+        assertEquals(7.0, valCaptor.getAllValues().get(2).doubleValue());
         assertEquals(expectedTags, tagCaptor.getValue());
 
     }
@@ -150,9 +150,9 @@ public class CANMetricsReporterImplTest {
         assertEquals("SIBatteryTemp", nameCaptor.getAllValues().get(1));
         assertEquals("SIBatteryVoltage", nameCaptor.getAllValues().get(2));
 
-        assertEquals(2.0, doubleValCaptor.getAllValues().get(0));
-        assertEquals(3, doubleValCaptor.getAllValues().get(1));
-        assertEquals(1.0, doubleValCaptor.getAllValues().get(2));
+        assertEquals(2.0, ((Number)doubleValCaptor.getAllValues().get(0)).doubleValue());
+        assertEquals(3, ((Number)doubleValCaptor.getAllValues().get(1)).doubleValue());
+        assertEquals(1.0, ((Number)doubleValCaptor.getAllValues().get(2)).doubleValue());
         assertEquals(expectedTags, tagCaptor.getValue());
 
     }
