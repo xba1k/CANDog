@@ -17,24 +17,24 @@ public interface CANFrame {
         UNKNOWN(0);
 
         private final int type;
-        private final static Map<Integer, FrameType> frameTypes = Arrays
+        private static final Map<Integer, FrameType> FRAMETYPES = Arrays
                 .stream(FrameType.values())
                 .collect(Collectors.toMap(FrameType::getType, Function.identity()));
 
         FrameType(final int type) {
             this.type = type;
         }
-        
+
         public int getType() {
             return type;
         }
-        
+
         public static FrameType forValue(final int type) {
-            return frameTypes.containsKey(type) ? frameTypes.get(type) : FrameType.UNKNOWN;
+            return FRAMETYPES.containsKey(type) ? FRAMETYPES.get(type) : FrameType.UNKNOWN;
         }
-        
+
     };
-    
-    public int getFrameId();
-    
+
+    int getFrameId();
+
 }

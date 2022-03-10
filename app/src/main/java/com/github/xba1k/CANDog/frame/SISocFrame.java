@@ -1,11 +1,13 @@
 package com.github.xba1k.CANDog.frame;
 
 public class SISocFrame implements CANFrame {
-    
+
     private final int frameId;
     public static final int MIN_LENGTH = 6;
-    private final int stateOfCharge, stateOfHealth, stateOfChargeHighPrecision;
-    
+    private final int stateOfCharge;
+    private final int stateOfHealth;
+    private final int stateOfChargeHighPrecision;
+
     public SISocFrame(final int stateOfCharge, final int stateOfHealth, final int stateOfChargeHighPrecision) {
         this.stateOfCharge = stateOfCharge;
         this.stateOfHealth = stateOfHealth;
@@ -28,10 +30,10 @@ public class SISocFrame implements CANFrame {
     public int getFrameId() {
         return frameId;
     }
-    
+
     @Override
     public String toString() {
         return "SISocFrame{" + "stateOfCharge=" + stateOfCharge + ", stateOfHealth=" + stateOfHealth + ", stateOfChargeHighPrecision=" + stateOfChargeHighPrecision + '}';
     }
-    
+
 }

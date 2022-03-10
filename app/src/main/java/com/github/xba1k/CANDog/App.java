@@ -6,14 +6,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class App {
-    
-    public static void main(String[] args) {
+
+    public static void main(final String[] args) {
         new SpringApplicationBuilder(App.class)
-//                .web(WebApplicationType.NONE)
+                .web(WebApplicationType.SERVLET)
                 .run(args);
         try {
             Thread.currentThread().join();
-        } catch(InterruptedException ex) {
+        } catch (InterruptedException ex) {
         }
     }
 }

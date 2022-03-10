@@ -1,5 +1,6 @@
 plugins {
     id 'application'
+    id 'checkstyle'
     id 'org.springframework.boot' version '2.6.4'
 }
 
@@ -53,8 +54,16 @@ tasks.named('bootJar') {
     dependsOn 'test'
 }
 
+tasks.named('bootJar') {
+    dependsOn 'checkstyleMain'
+}
+
 bootRun {
     if (project.hasProperty('args')) {
         args project.args.split(',')
     }
+}
+
+tasks.withType(Checkstyle).configureEach {
+    //configDirectory.set(file("/home/user/NetBeansProjects/CANDog/config/checkstyle"))
 }

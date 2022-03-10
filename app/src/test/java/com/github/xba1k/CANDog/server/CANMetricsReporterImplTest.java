@@ -31,6 +31,7 @@ public class CANMetricsReporterImplTest {
     final CANFrame sampleSocFrame = new SISocFrame(2, 3, 4);
     final CANFrame sampleFaultFrame = new SIFaultFrame(3, 4, 5, 6);
     final CANFrame sampleIdFrame = new SIIdFrame("LA", 6, 7.0, 8);
+    final CANFrame sampleIdFrame2 = new SIIdFrame("LA", 9, 10.0, 11);
     final CANFrame sampleCorruptedFrame = new CorruptedFrame(6, new byte[]{0x51, 0x03, 0, 0, 0x3e, 0x02, 0x2c, 0x01});
 
     final MeterRegistry meterRegistry = mock(MeterRegistry.class);
@@ -153,6 +154,34 @@ public class CANMetricsReporterImplTest {
         assertEquals(2.0, ((Number)doubleValCaptor.getAllValues().get(0)).doubleValue());
         assertEquals(3, ((Number)doubleValCaptor.getAllValues().get(1)).doubleValue());
         assertEquals(1.0, ((Number)doubleValCaptor.getAllValues().get(2)).doubleValue());
+        assertEquals(expectedTags, tagCaptor.getValue());
+
+    }
+    
+    @Test
+    public void tesUpdatedValuesPropagate() {
+
+        when(meterRegistry.counter(anyString(), anyList())).thenReturn(frameCounter);
+
+        final List<Tag> expectedTags = Arrays.asList(Tag.of("source", "127.0.0.1"), Tag.of("Chemistry", "LA"));
+
+        final ArgumentCaptor<List<Tag>> tagCaptor = ArgumentCaptor.forClass(expectedTags.getClass());
+        final ArgumentCaptor<String> nameCaptor = ArgumentCaptor.forClass(String.class);
+        final ArgumentCaptor <Number> valCaptor = ArgumentCaptor.forClass(double.class);
+
+        metricsReporter.processFrame("127.0.0.1", sampleIdFrame);
+        metricsReporter.processFrame("127.0.0.1", sampleIdFrame2);
+        verify(frameCounter, times(2)).increment();
+        verify(meterRegistry, times(6)).gauge(nameCaptor.capture(), tagCaptor.capture(), valCaptor.capture());
+
+        assertEquals("SISwVer", nameCaptor.getAllValues().get(3));
+        assertEquals("SIHwVer", nameCaptor.getAllValues().get(4));
+        assertEquals("SICapacity", nameCaptor.getAllValues().get(5));
+        
+        assertEquals(11, valCaptor.getAllValues().get(3).doubleValue());
+        assertEquals(9, valCaptor.getAllValues().get(4).doubleValue());
+        assertEquals(10, valCaptor.getAllValues().get(5).doubleValue());
+
         assertEquals(expectedTags, tagCaptor.getValue());
 
     }

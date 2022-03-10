@@ -11,25 +11,25 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UDPMessageProcessor {
-    
-    final Logger logger = LoggerFactory.getLogger(UDPMessageProcessor.class);
-    
+
+    private final Logger logger = LoggerFactory.getLogger(UDPMessageProcessor.class);
+
     @Autowired
-    FrameDecodingFactory frameDecodingFactory;
-    
+    private FrameDecodingFactory frameDecodingFactory;
+
     @Autowired
-    CANMetricsReporter metricsReporter;
-    
-    public void processMessage(Message message) {
-        
+    private CANMetricsReporter metricsReporter;
+
+    public void processMessage(final Message message) {
+
         final String sourceIp = Optional.ofNullable(message.getHeaders().get("ip_address"))
                 .map(Object::toString)
                 .orElse("unknown");
-        final CANFrame frame = frameDecodingFactory.getDecodedFrame((byte[])message.getPayload());
-        
+        final CANFrame frame = frameDecodingFactory.getDecodedFrame((byte[]) message.getPayload());
+
         logger.debug(String.format("From: {}, Data: {}"), sourceIp, frame.toString());
         metricsReporter.processFrame(sourceIp, frame);
-        
+
     }
-    
+
 }

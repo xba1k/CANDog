@@ -82,8 +82,8 @@ public class SIFrameDecodingFactoryImplTest {
         final SIIdFrame chargeFrame = (SIIdFrame) frame;
 
         assertEquals(CANFrame.FrameType.SI_ID_FRAME.getType(), chargeFrame.getFrameId());
-        assertEquals(5905, chargeFrame.getSw_ver());
-        assertEquals(3844, chargeFrame.getHw_ver());
+        assertEquals(5905, chargeFrame.getSwVer());
+        assertEquals(3844, chargeFrame.getHwVer());
         assertEquals("Li", chargeFrame.getChemistry());
         assertEquals(66.0, chargeFrame.getCapacity());
 
