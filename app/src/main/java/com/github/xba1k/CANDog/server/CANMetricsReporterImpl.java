@@ -4,6 +4,7 @@ import com.github.xba1k.CANDog.frame.CANFrame;
 import com.github.xba1k.CANDog.frame.SIIdFrame;
 import com.github.xba1k.CANDog.frame.SISocFrame;
 import com.github.xba1k.CANDog.frame.SIVoltageFrame;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Tag;
 import java.util.Arrays;
@@ -26,6 +27,7 @@ public class CANMetricsReporterImpl implements CANMetricsReporter {
 
     private final MeterRegistry meterRegistry;
 
+    @SuppressFBWarnings("EI2")
     public CANMetricsReporterImpl(final MeterRegistry meterRegistry) {
         this.meterRegistry = meterRegistry;
     }
@@ -85,7 +87,7 @@ public class CANMetricsReporterImpl implements CANMetricsReporter {
                 .collect(Collectors.joining("_"));
     }
 
-    class MutableDouble extends Number {
+    static class MutableDouble extends Number {
 
         private double doubleValue;
 

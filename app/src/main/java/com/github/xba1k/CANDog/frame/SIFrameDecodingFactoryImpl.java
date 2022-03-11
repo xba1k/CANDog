@@ -1,5 +1,6 @@
 package com.github.xba1k.CANDog.frame;
 
+import static com.github.xba1k.CANDog.util.Utils.bytesToString;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
@@ -53,12 +54,12 @@ public class SIFrameDecodingFactoryImpl implements FrameDecodingFactory {
 
             case SI_ID_FRAME:
                 return byteBuffer.remaining() >= SIIdFrame.MIN_LENGTH
-                        ? new SIIdFrame(new String(getBytes(byteBuffer, 2)), byteBuffer.getShort(), byteBuffer.getShort() / M_MULTIPLIER, byteBuffer.getShort())
+                        ? new SIIdFrame(bytesToString(getBytes(byteBuffer, 2)), byteBuffer.getShort(), byteBuffer.getShort() / M_MULTIPLIER, byteBuffer.getShort())
                         : new CorruptedFrame(frameId, remainingBytes(byteBuffer));
 
             case SI_NAME_FRAME:
                 return byteBuffer.remaining() >= SINameFrame.MIN_LENGTH
-                        ? new SINameFrame(new String(remainingBytes(byteBuffer)))
+                        ? new SINameFrame(bytesToString(remainingBytes(byteBuffer)))
                         : new CorruptedFrame(frameId, remainingBytes(byteBuffer));
 
             case SI_FAULT_FRAME:
